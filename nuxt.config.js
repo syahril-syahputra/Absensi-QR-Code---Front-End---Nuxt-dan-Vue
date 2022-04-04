@@ -1,7 +1,10 @@
+require('dotenv').config()
 export default {
+  ssr: false,
+  target: 'static',
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'absensiqrcode',
+    title: 'Absensi QR Code - RO Malang',
     htmlAttrs: {
       lang: 'en',
     },
@@ -15,10 +18,14 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
+
+  css: ['~/assets/css/main.css', '~/assets/css/transitions.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [
+
+    { src: '~/plugins/v-calendar', ssr: false },
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -33,12 +40,40 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/auth-next'
   ],
-
-  // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: '/',
+    baseURL: process.env.API_URL,
+
+    credentials: true,
+  },
+
+  router: {
+    middleware: ['auth'],
+  },
+  auth: {
+    scopeKey: 'role',
+    redirect: {
+      login: '/',
+
+      callback: '/callback',
+      home: '/dashboard'
+    },
+    strategies: {
+      laravelSanctum: {
+        provider: 'laravel/sanctum',
+        url: 'http://localhost:8000',
+        endpoints: {
+          login: {
+            url: 'http://localhost:8000/api/login',
+          },
+          user: {
+            url: 'http://localhost:8000/api/user',
+          }
+        },
+      },
+    },
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
