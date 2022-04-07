@@ -44,7 +44,7 @@
                     font-bold
                     rounded-lg
                   "
-                  @click="detail(item.id)"
+                  @click="$router.push('admin/' + item.id)"
                 >
                   Daftar Pekerja
                 </button>
