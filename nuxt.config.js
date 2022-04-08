@@ -50,7 +50,9 @@ export default {
   },
 
   router: {
+    base: '/absensi/',
     middleware: ['auth'],
+
   },
   auth: {
     scopeKey: 'role',
@@ -75,7 +77,11 @@ export default {
       },
     },
   },
-
+  generate: {
+    dir: 'absensi'
+  },
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+
+  },
 }
