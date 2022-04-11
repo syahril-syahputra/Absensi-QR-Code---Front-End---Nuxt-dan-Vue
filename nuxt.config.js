@@ -65,13 +65,13 @@ export default {
     strategies: {
       laravelSanctum: {
         provider: 'laravel/sanctum',
-        url: 'http://localhost:8000',
+        url: 'http://kanwilmalang.com:81/absensi/apiabsensiqrcode',
         endpoints: {
           login: {
-            url: 'http://localhost:8000/api/login',
+            url: 'http://kanwilmalang.com:81/absensi/apiabsensiqrcode/api/login',
           },
           user: {
-            url: 'http://localhost:8000/api/user',
+            url: 'http://kanwilmalang.com:81/absensi/apiabsensiqrcode/api/user',
           }
         },
       },

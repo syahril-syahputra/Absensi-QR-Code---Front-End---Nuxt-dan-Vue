@@ -61,9 +61,9 @@ export default {
   data() {
     return {
       value: 'Arhiel',
-      size: 300,
-      username: 'arhiel@gmail.com',
-      password: '12345abcde',
+      size: 450,
+      username: '',
+      password: '',
     }
   },
   mounted() {
