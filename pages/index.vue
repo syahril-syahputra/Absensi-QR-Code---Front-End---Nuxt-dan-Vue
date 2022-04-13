@@ -1,8 +1,12 @@
 <template>
   <div class="flex bg-forbg flex-row items-center justify-between h-screen">
     <div class="flex flex-1 flex-col items-center justify-center">
-      <qrcode-vue :value="value" background="#EFEFEF" :size="size" level="L" />
-      <h1 class="mt-5 text-3xl font-bold">Scan Me</h1>
+      <qrcode-vue :value="value" background="#EFEFEF" :size="size" class="mx-4" level="L" />
+      <div class="flex justify-between p-5">
+        <button @click="perbesar" class="bg-blue-500 hover:bg-blue-300 cursor-pointer px-5 rounded-lg shadow-lg text-white font-bold text-lg " title="Perbesar QR Code">+</button>
+      <h1 class="text-3xl mx-10 font-bold">Scan Me</h1>
+       <button @click="perkecil" class="bg-blue-500 hover:bg-blue-300 cursor-pointer px-5 rounded-lg shadow-lg text-white font-bold text-lg " title="Perkecil QR Code">-</button>
+      </div>
     </div>
     <div
       class="
@@ -84,16 +88,23 @@ export default {
             },
           })
         } catch (error) {
-          if(error.response.status === 401){
-            alert("Email Atau Password Salah")
-          }else
-          {
+          if (error.response.status === 401) {
+            alert('Email Atau Password Salah')
+          } else {
             console.log(error)
-            alert("Terjadi Kesalahan Dengan Code Error " + error.response.status)
+            alert(
+              'Terjadi Kesalahan Dengan Code Error ' + error.response.status
+            )
           }
         }
       }
     },
+    perbesar(){
+      this.size = this.size + 50
+    },
+    perkecil(){
+      this.size = this.size - 50
+    }
   },
   components: {
     QrcodeVue,
